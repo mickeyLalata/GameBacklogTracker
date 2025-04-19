@@ -1,0 +1,80 @@
+body{
+    background-color: #1e003e;
+}
+header{
+  background-color: #3c0066; 
+  color: #FFFFFF; 
+  padding: 20px;
+  text-align: center;
+  font-size: 2em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3), 
+               -1px -1px 3px rgba(255, 255, 255, 0.3); /* Shadow for embossed look */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5),  /* Inner shadow for depth */
+              0 4px 10px rgba(0, 0, 0, 0.3); /* Outer shadow for lift */
+}
+#container{
+    display: flex;
+    gap: 4%;
+    margin: 30px 0; /* Top Distance */
+    height: 60vh;
+    box-sizing: border-box;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#list{
+  background-color: #3c0066; 
+  color: #FFFFFF; 
+  padding: 20px;
+  width: 28vw;
+  height: 60vh;
+  font-size: 2em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3), 
+               -1px -1px 3px rgba(20, 20, 20, 0.3); /* Shadow for embossed look */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5),  /* Inner shadow for depth */
+              0 4px 10px rgba(0, 0, 0, 0.3); /* Outer shadow for lift */
+}
+#list:hover{
+    cursor: pointer;
+}
+#game-list{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: none;
+}
+#playing{
+  background-color: #3c0066; 
+  color: #FFFFFF; 
+  padding: 20px;
+  width: 28vw;
+  height: 60vh;
+  font-size: 2em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3), 
+               -1px -1px 3px rgba(255, 255, 255, 0.3); /* Shadow for embossed look */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5),  /* Inner shadow for depth */
+              0 4px 10px rgba(0, 0, 0, 0.3); /* Outer shadow for lift */
+}
+#playing:hover{
+    cursor: pointer;
+}
+#current-playing{
+    display: none
+}
+#done{
+  background-color: #3c0066; 
+  color: #FFFFFF; 
+  padding: 20px;
+  width: 28vw;
+  height: 60vh;
+  font-size: 2em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3), 
+               -1px -1px 3px rgba(255, 255, 255, 0.3); /* Shadow for embossed look */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5),  /* Inner shadow for depth */
+              0 4px 10px rgba(0, 0, 0, 0.3); /* Outer shadow for lift */ 
+}
+#done:hover{
+    cursor: pointer;
+}
+#done-playing{
+    display: none;
+}
