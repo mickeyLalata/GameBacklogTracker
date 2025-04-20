@@ -65,28 +65,19 @@ header{
 .list-view{
     background-image: url("img/gamelist-img.png");
 }
-.list-view:hover{
-    background-image: url("img/playlist-img.png");
-}
-.list-view.active{
+.list-view:hover, .list-view.active{
     background-image: url("img/playlist-img.png");
 }
 .play-view{
     background-image: url("img/currentlist-img.png");
 }
-.play-view:hover{
-    background-image: url("img/currentlyplaying-img.png");
-}
-.play-view.active{
+.play-view:hover, .play-view.active{
     background-image: url("img/currentlyplaying-img.png");
 }
 .done-view{
     background-image: url("img/done-img.png");
 }
-.done-view:hover{
-    background-image: url("img/donelist-img.png");
-}
-.done-view.active{
+.done-view:hover, .done-view.active{
     background-image: url("img/donelist-img.png");
 }
 #game-list{
