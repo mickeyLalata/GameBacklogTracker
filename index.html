@@ -19,11 +19,66 @@
             <div class="done-view"></div>
         </div>
     </div>
+    <form id="game-form">
+        <input type="text" id="title" placeholder="Game Title" required>
+        <input type="text" id="platform" placeholder="Platform" required>
+        <select id="status" required>
+            <option value="Wants to play">Wants to play</option>
+            <option value="Playing">Playing</option>
+            <option value="Done">Done</option>
+        </select>
+        <input type="text" id="genre" placeholder="Genre" required>
+        <button type="submit">Add Game</button>
+      </form>
     <div id="game-list">
+        <table id="game-table1">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Platform</th>
+                <th>Status</th>
+                <th>Genre</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data will be added dynamically via JS -->
+            </tbody>
+          </table>
         <button id="reset">Back</button>
     </div>
-    <div id="current-playing"></div>
-    <div id="done-playing"></div>
+    <div id="current-playing">
+        <table id="game-table2">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Platform</th>
+                <th>Status</th>
+                <th>Genre</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data will be added dynamically via JS -->
+            </tbody>
+          </table>
+    </div>
+    <div id="done-playing">
+        <table id="game-table3">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Platform</th>
+                <th>Status</th>
+                <th>Genre</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data will be added dynamically via JS -->
+            </tbody>
+          </table>
+    </div>
 <script src="main.js"></script>
 </body>
 </html>
