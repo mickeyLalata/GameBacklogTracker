@@ -10,6 +10,7 @@ const contCurrentPlaying = document.getElementById("current-playing");
 const contDonePlaying = document.getElementById("done-playing");
 const rstBtn = document.getElementById("reset");
 
+//mobile touch img transistion
 const activeScroll = (scroll) => {
 scroll.forEach(touch => {
     touch.addEventListener("touchmove", () => {
@@ -25,22 +26,23 @@ scroll.forEach(touch => {
       });
 });
 };
-
 activeScroll(activeList);
 activeScroll(activeCurrent);
 activeScroll(activeDone);
 
-gameList.addEventListener("click", () => {
-    contList.style.display = "block";
-    contentList.style.display = "none";
-    rstBtn.addEventListener("click", () => {
-        contList.style.display = "none";
-        contentList.style.display = "flex";
+//table toggle
+const toggleTable = (tableTog) => {
+    tableTog.forEach(toggle => {
+        toggle.addEventListener("click", () => {
+            contList.style.display = "block";
+            contentList.style.display = "none";
+        });
+        rstBtn.addEventListener("click", () => {
+            contList.style.display = "none";
+            contentList.style.display = "flex";
+        });
     });
-});
-currentlyPlaying.addEventListener("click", () => {
-    alert("Div Clicked!!!");
-});
-donePlaying.addEventListener("click", () => {
-    alert("Div Clicked!!!");
-});
+}
+toggleTable(activeList);
+toggleTable(activeCurrent);
+toggleTable(activeDone);
