@@ -90,11 +90,43 @@ header{
     background-image: url("img/donelist-img.png");
 }
 #game-list{
-    width: 100vw;
-    height: 100vh;
+    width: 80vw;
+    height: 80vh;
+    margin: auto;
+    padding: 1rem;
     background-color: #010101;
     color: #FFFFFF;
+    border: 2px solid yellow;
+    position: relative;
     display: none;
+}
+#reset{
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%); 
+    padding: 0.75rem 1.5rem;
+}
+#table-container{  
+    border: 2px solid yellow;
+}
+th, td{
+    width: 100%;
+    height: 8px;
+    padding: 22px 22px;
+    text-align: center;
+}
+th{
+    color: black;
+    background-color: white;
+    text-align: center;
+    font-size: 15px;
+}
+td{
+   font-size: 15px;
+}
+thead tr{
+    border: 2px solid yellow;
 }
 #current-playing{
     display: none
