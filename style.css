@@ -1,8 +1,10 @@
 body{
-    background-color: #1e003e;
+    background-color: #010101;
 }
 header{
-  background-color: #3c0066; 
+  font-family: garamond;
+  font-weight: bold;
+  background-color: #010101; 
   color: #FFFFFF; 
   padding: 20px;
   text-align: center;
@@ -11,6 +13,7 @@ header{
                -2px -2px 5px rgba(255, 255, 255, 0.3); /* Shadow for embossed look */
   box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5),  /* Inner shadow for depth */
               6px 8px 18px rgba(0, 0, 0, 0.3); /* Outer shadow for lift */
+  border: 2px solid yellow;
 }
 #container{
     display: flex;
@@ -36,7 +39,7 @@ header{
     }
   }
 #list, #playing, #done{
-  background-color: #3c0066; 
+  background-color: #010101; 
   color: #FFFFFF; 
   padding: 20px;
   width: 28vw;
@@ -46,13 +49,17 @@ header{
                -1px -1px 3px rgba(20, 20, 20, 0.3); /* Shadow for embossed look */
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5),  /* Inner shadow for depth */
               0 4px 10px rgba(0, 0, 0, 0.3); /* Outer shadow for lift */
+  border: 2px solid yellow;
 }
+
 .list-view, .play-view, .done-view{
   width: 100%;
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
-  transition: ease-in 180ms;
+  transition: ease-in 180ms; 
+  justify-content: center;
+  align-items: center;
 }
 .list-view:hover, .play-view:hover, .done-view:hover{
     cursor: pointer;
@@ -90,5 +97,8 @@ header{
     display: none
 }
 #done-playing{
+    display: none;
+}
+#game-form{
     display: none;
 }
