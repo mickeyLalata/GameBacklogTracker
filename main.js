@@ -9,6 +9,13 @@ const contList = document.getElementById("game-list");
 const contCurrentPlaying = document.getElementById("current-playing");
 const contDonePlaying = document.getElementById("done-playing");
 const rstBtn = document.getElementById("reset");
+const rstBtn1 = document.getElementById("reset1");
+const gameForm = document.getElementById("game-form");
+const add = document.getElementById("add");
+const inputLog = document.getElementsByClassName("input-log");
+const inputLogs = document.getElementsByClassName("input-logs");
+
+
 
 //mobile touch img transistion
 const activeScroll = (scroll) => {
@@ -33,16 +40,39 @@ activeScroll(activeDone);
 //table toggle
 const toggleTable = (tableTog) => {
     tableTog.forEach(toggle => {
-        toggle.addEventListener("click", () => {
-            contList.style.display = "block";
+        toggle.addEventListener("click", () => {            
             contentList.style.display = "none";
+            contList.style.display = "block";
         });
-        rstBtn.addEventListener("click", () => {
-            contList.style.display = "none";
+        rstBtn1.addEventListener("click", () => {
             contentList.style.display = "flex";
-        });
+            contList.style.display = "none";
+        })
     });
 }
 toggleTable(activeList);
 toggleTable(activeCurrent);
 toggleTable(activeDone);
+
+//game form toggle
+add.addEventListener("click", () => {
+    contentList.style.display = "none";
+    gameForm.style.display = "flex";
+    toggleTable.style.display = "none";
+});
+
+//reset button
+rstBtn.addEventListener("click", () => {
+    gameForm.style.display = "none";
+    contentList.style.display = "flex";
+
+    // Clear all inputs with class "input-log"
+    for (let i = 0; i < inputLog.length; i++) {
+        inputLog[i].value = "";
+    }
+
+    // Reset all selects with class "input-logs"
+    for (let i = 0; i < inputLogs.length; i++) {
+        inputLogs[i].selectedIndex = 0;
+    }
+});

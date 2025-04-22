@@ -20,15 +20,17 @@
         </div>
     </div>
     <form id="game-form">
-        <input type="text" id="title" placeholder="Game Title" required>
-        <input type="text" id="platform" placeholder="Platform" required>
-        <select id="status" required>
+        <input class="input-log" type="text" id="title" placeholder="Game Title" required>
+        <input class="input-log" type="text" id="platform" placeholder="Platform" required>
+        <select class="input-logs"id="status" required>
+            <option value="" disabled selected hidden>Select</option>
             <option value="Wants to play">Wants to play</option>
             <option value="Playing">Playing</option>
             <option value="Done">Done</option>
         </select>
-        <input type="text" id="genre" placeholder="Genre" required>
+        <input class="input-log" type="text" id="genre" placeholder="Genre" required>
         <button type="submit">Add Game</button>
+        <button id="reset">Back</button>
       </form>
     <div id="game-list">
       <div id="table-container">
@@ -52,7 +54,7 @@
             </tbody>
           </table>
         </div>
-      <button id="reset">Back</button>
+      <button id="reset1">Back</button>
     </div>
     <div id="current-playing">
       <div id="table-container">
@@ -71,7 +73,7 @@
           </tbody>
         </table>
       </div>
-      <button id="reset">Back</button>
+      <button id="reset1">Back</button>
     </div>
     <div id="done-playing">
       <div id="table-container">
@@ -90,7 +92,10 @@
           </tbody>
         </table>
       </div>
-      <button id="reset">Back</button>
+      <button id="reset1">Back</button>
+    </div>
+    <div id="add-button">
+      <button id="add">Add Game</button>
     </div>
 <script src="main.js"></script>
 </body>
