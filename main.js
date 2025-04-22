@@ -46,7 +46,7 @@ const toggleTable = (tableTog) => {
         });
         rstBtn1.addEventListener("click", () => {
             contentList.style.display = "flex";
-            contList.style.display = "none";
+            contList.style.direction = "none";
         })
     });
 }
@@ -58,21 +58,47 @@ toggleTable(activeDone);
 add.addEventListener("click", () => {
     contentList.style.display = "none";
     gameForm.style.display = "flex";
-    toggleTable.style.display = "none";
+    add.style.display = "none";
 });
 
 //reset button
-rstBtn.addEventListener("click", () => {
+rstBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // stop form submission
+
+    let hasValue = false;
+
+    // Check if inputs have values
+    for (let i = 0; i < inputLog.length; i++) {
+        if (inputLog[i].value.trim() !== "") {
+            hasValue = true;
+            break;
+        }
+    }
+
+    // Check if selects have values
+    for (let i = 0; i < inputLogs.length; i++) {
+        if (inputLogs[i].value !== "") {
+            hasValue = true;
+            break;
+        }
+    }
+
+    // Confirm back if there's any data
+    if (hasValue) {
+        const confirmBack = confirm("You have unsaved data. Are you sure you want to go back?");
+        if (!confirmBack) return;
+    }
+
+    // Reset and go back
     gameForm.style.display = "none";
     contentList.style.display = "flex";
 
-    // Clear all inputs with class "input-log"
     for (let i = 0; i < inputLog.length; i++) {
         inputLog[i].value = "";
     }
 
-    // Reset all selects with class "input-logs"
     for (let i = 0; i < inputLogs.length; i++) {
         inputLogs[i].selectedIndex = 0;
     }
 });
+
