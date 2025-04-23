@@ -160,6 +160,6 @@ thead tr{
 #done-playing{
     display: none;
 }
-#game-form{
+#game-form-container{
     display: none;
 }

@@ -19,7 +19,8 @@
             <div class="done-view"></div>
         </div>
     </div>
-    <form id="game-form">
+    <div id="game-form-container">
+      <form id="game-form">
         <input class="input-log" type="text" id="title" placeholder="Game Title" required>
         <input class="input-log" type="text" id="platform" placeholder="Platform" required>
         <select class="input-logs"id="status" required>
@@ -29,9 +30,11 @@
             <option value="Done">Done</option>
         </select>
         <input class="input-log" type="text" id="genre" placeholder="Genre" required>
+        <input class="input-log" type="text" id="actions" placeholder="Actions" required>
         <button type="submit">Submit Game</button>
         <button id="reset">Back</button>
       </form>
+    </div>
     <div id="game-list">
       <div id="table-container">
           <table id="game-table1">

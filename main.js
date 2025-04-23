@@ -11,6 +11,7 @@ const contDonePlaying = document.getElementById("done-playing");
 const rstBtn = document.getElementById("reset");
 const rstBtn1 = document.getElementById("reset1");
 const gameForm = document.getElementById("game-form");
+const gameFormContainer = document.getElementById("game-form-container");
 const add = document.getElementById("add");
 const inputLog = document.getElementsByClassName("input-log");
 const inputLogs = document.getElementsByClassName("input-logs");
@@ -45,8 +46,8 @@ const toggleTable = (tableTog) => {
             contList.style.display = "block";
         });
         rstBtn1.addEventListener("click", () => {
-            contentList.style.display = "flex";
-            contList.style.direction = "none";
+            contList.style.display = "none";
+            contentList.style.display = "flex"; 
         })
     });
 }
@@ -57,7 +58,7 @@ toggleTable(activeDone);
 //game form toggle
 add.addEventListener("click", () => {
     contentList.style.display = "none";
-    gameForm.style.display = "flex";
+    gameFormContainer.style.display = "flex";
     add.style.display = "none";
 });
 
@@ -90,7 +91,8 @@ rstBtn.addEventListener("click", (e) => {
     }
 
     // Reset and go back
-    gameForm.style.display = "none";
+    gameFormContainer.style.display = "none";
+    add.style.display = "block";
     contentList.style.display = "flex";
 
     for (let i = 0; i < inputLog.length; i++) {
