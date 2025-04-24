@@ -1,3 +1,4 @@
+//main page 
 const contentList = document.getElementById("container");
 const gameList = document.getElementById("list");
 const activeList = document.querySelectorAll(".list-view");
@@ -5,16 +6,26 @@ const currentlyPlaying = document.getElementById("playing");
 const activeCurrent = document.querySelectorAll(".play-view");
 const donePlaying = document.getElementById("done");
 const activeDone = document.querySelectorAll(".done-view");
+
+//table container
 const contList = document.getElementById("game-list");
 const contCurrentPlaying = document.getElementById("current-playing");
 const contDonePlaying = document.getElementById("done-playing");
+
+//reset button or back button
 const rstBtn = document.getElementById("reset");
 const rstBtn1 = document.getElementById("reset1");
+
+//add game form
 const gameForm = document.getElementById("game-form");
 const gameFormContainer = document.getElementById("game-form-container");
-const add = document.getElementById("add");
+const add = document.getElementById("add"); // add game button
+
+//input value 
 const inputLog = document.getElementsByClassName("input-log");
 const inputLogs = document.getElementsByClassName("input-logs");
+
+//table data
 
 
 
