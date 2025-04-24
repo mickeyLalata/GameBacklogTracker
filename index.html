@@ -23,7 +23,7 @@
       <form id="game-form">
         <input class="input-log" type="text" id="title" placeholder="Game Title" required>
         <input class="input-log" type="text" id="platform" placeholder="Platform" required>
-        <select class="input-logs"id="status" required>
+        <select class="input-logs" id="status" required>
             <option value="" disabled selected hidden>Select</option>
             <option value="Wants to play">Wants to play</option>
             <option value="Playing">Playing</option>
@@ -32,8 +32,8 @@
         <input class="input-log" type="text" id="genre" placeholder="Genre" required>
         <input class="input-log" type="text" id="actions" placeholder="Actions" required>
         <button type="submit">Submit Game</button>
-        <button id="reset">Back</button>
       </form>
+      <button type="button" id="reset">Back</button>
     </div>
     <div id="game-list">
       <div id="table-container">
@@ -47,7 +47,7 @@
                 <th class="actions">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="table-body">
               <!-- Data will be added dynamically via JS -->
               <td>Monster Hunter Freedom Unite</td>
               <td>psp</td>
@@ -57,7 +57,7 @@
             </tbody>
           </table>
         </div>
-      <button id="reset1">Back</button>
+      <button type="button" id="reset1">Back</button>
     </div>
     <div id="current-playing">
       <div id="table-container">
@@ -76,7 +76,7 @@
           </tbody>
         </table>
       </div>
-      <button id="reset1">Back</button>
+      <button type="button" id="reset1">Back</button>
     </div>
     <div id="done-playing">
       <div id="table-container">
@@ -95,7 +95,7 @@
           </tbody>
         </table>
       </div>
-      <button id="reset1">Back</button>
+      <button type="button" id="reset1">Back</button>
     </div>
     <div id="add-button">
       <button id="add">Add Game</button>
