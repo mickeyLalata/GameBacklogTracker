@@ -1,3 +1,5 @@
+//wait for the DOM to load
+document.addEventListener("DOMContentLoaded", () => {
 //main page 
 const contentList = document.getElementById("container");
 const gameList = document.getElementById("list");
@@ -20,14 +22,11 @@ const rstBtn1 = document.getElementById("reset1");
 const gameForm = document.getElementById("game-form");
 const gameFormContainer = document.getElementById("game-form-container");
 const add = document.getElementById("add"); // add game button
+const tableBody = document.getElementById("table-body");
 
 //input value 
 const inputLog = document.getElementsByClassName("input-log");
 const inputLogs = document.getElementsByClassName("input-logs");
-
-//table data
-
-
 
 //mobile touch img transistion
 const activeScroll = (scroll) => {
@@ -45,6 +44,7 @@ scroll.forEach(touch => {
       });
 });
 };
+
 activeScroll(activeList);
 activeScroll(activeCurrent);
 activeScroll(activeDone);
@@ -115,3 +115,39 @@ rstBtn.addEventListener("click", (e) => {
     }
 });
 
+
+//adding game data in the table
+gameForm.addEventListener("submit", (e) => {
+    e.preventDefault(); //prevents page reload
+
+    //table data
+    const title = document.getElementById("title").value;
+    const platform = document.getElementById("platform").value;
+    const status = document.getElementById("status").value;
+    const genre = document.getElementById("genre").value;
+    const actions = document.getElementById("actions").value;
+
+    const newRow = document.createElement("tr");
+    const titleAdd = document.createElement("td");
+    titleAdd.textContent = title;
+    const platformAdd = document.createElement("td");
+    platformAdd.textContent = platform;
+    const statusAdd = document.createElement("td");
+    statusAdd.textContent = status;
+    const genreAdd = document.createElement("td");
+    genreAdd.textContent = genre;
+    const actionsAdd = document.createElement("td");
+    actionsAdd.textContent = actions;
+
+    newRow.appendChild(titleAdd);
+    newRow.appendChild(platformAdd);
+    newRow.appendChild(statusAdd);
+    newRow.appendChild(genreAdd);
+    newRow.appendChild(actionsAdd);
+
+    tableBody.appendChild(newRow);
+
+    gameForm.reset();
+    alert("Game Added Successfully");
+});
+});
