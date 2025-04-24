@@ -54,46 +54,6 @@ button:hover{
     justify-content: center;
     align-items: center;
     }
-    table{
-        table-layout: fixed;
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th.title,
-    td.title {
-    width: 25%;
-    min-width: 150px;
-    }
-
-    th.platform,
-    td.platform {
-    width: 15%;
-    min-width: 120px;
-    }
-
-    th.status,
-    td.status {
-    width: 15%;
-    min-width: 120px;
-    }
-
-    th.genre,
-    td.genre {
-    width: 15%;
-    min-width: 120px;
-    }
-
-    th.actions,
-    td.actions {
-    width: 15%;
-    min-width: 120px;
-    }
-
-    th.delete,
-    td.delete {
-    width: 15%;
-    min-width: 120px;
-    }
   }
 #list, #playing, #done{
   background-color: #010101; 
@@ -153,6 +113,10 @@ button:hover{
     border: 2px solid yellow;
     overflow-x: auto;
     overflow-y: auto;
+}
+table{
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 th, td{
     width: 100%;
