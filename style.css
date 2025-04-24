@@ -54,28 +54,45 @@ button:hover{
     justify-content: center;
     align-items: center;
     }
-    #table-container{
-        overflow-x: auto;
-    }
     table{
         table-layout: fixed;
         width: 100%;
         border-collapse: collapse;
     }
-    th.title{
-        width: 150px;
+    th.title,
+    td.title {
+    width: 25%;
+    min-width: 150px;
     }
-    th.platform{
-        width: 50px;
+
+    th.platform,
+    td.platform {
+    width: 15%;
+    min-width: 120px;
     }
-    th.status{
-        width: 50px;
+
+    th.status,
+    td.status {
+    width: 15%;
+    min-width: 120px;
     }
-    th.genre{
-        width: 50px;
+
+    th.genre,
+    td.genre {
+    width: 15%;
+    min-width: 120px;
     }
-    th.actions{
-        width: 50px;
+
+    th.actions,
+    td.actions {
+    width: 15%;
+    min-width: 120px;
+    }
+
+    th.delete,
+    td.delete {
+    width: 15%;
+    min-width: 120px;
     }
   }
 #list, #playing, #done{
@@ -134,6 +151,8 @@ button:hover{
 }
 #table-container{  
     border: 2px solid yellow;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 th, td{
     width: 100%;
