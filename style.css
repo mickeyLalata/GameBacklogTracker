@@ -115,17 +115,6 @@ header{
 .done-view:hover, .done-view.active{
     background-image: url("img/donelist-img.png");
 }
-#game-list{
-    width: 80vw;
-    height: 80vh;
-    margin: auto;
-    padding: 1rem;
-    background-color: #010101;
-    color: #FFFFFF;
-    border: 2px solid yellow;
-    position: relative;
-    display: none;
-}
 #reset{
     position: absolute;
     bottom: 1rem;
@@ -150,9 +139,21 @@ th{
 }
 td{
    font-size: 15px;
+   border: 2px solid yellow;
 }
 thead tr{
     border: 2px solid yellow;
+}
+#game-list{
+    width: 80vw;
+    height: 80vh;
+    margin: auto;
+    padding: 1rem;
+    background-color: #010101;
+    color: #FFFFFF;
+    border: 2px solid yellow;
+    position: relative;
+    display: none;
 }
 #current-playing{
     display: none
