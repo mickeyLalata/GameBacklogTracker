@@ -127,6 +127,7 @@ gameForm.addEventListener("submit", (e) => {
     const genre = document.getElementById("genre").value;
     const actions = document.getElementById("actions").value;
 
+    //adding table data
     const newRow = document.createElement("tr");
     const titleAdd = document.createElement("td");
     titleAdd.textContent = title;
@@ -139,13 +140,27 @@ gameForm.addEventListener("submit", (e) => {
     const actionsAdd = document.createElement("td");
     actionsAdd.textContent = actions;
 
+    //delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.classList.add("delete-btn");
+
+    //deleting tr or data
+    const deleteTable = document.createElement("td");
+    deleteTable.appendChild(deleteBtn);
+
     newRow.appendChild(titleAdd);
     newRow.appendChild(platformAdd);
     newRow.appendChild(statusAdd);
     newRow.appendChild(genreAdd);
     newRow.appendChild(actionsAdd);
+    newRow.appendChild(deleteTable);
 
     tableBody.appendChild(newRow);
+
+    deleteBtn.addEventListener("click", () => {
+       newRow.remove(); 
+    });
 
     gameForm.reset();
     alert("Game Added Successfully");
