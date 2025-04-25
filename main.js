@@ -21,12 +21,17 @@ const rstBtn1 = document.getElementById("reset1");
 //add game form
 const gameForm = document.getElementById("game-form");
 const gameFormContainer = document.getElementById("game-form-container");
-const add = document.getElementById("add"); // add game button
+const add = document.getElementById("add-button"); // add game button
 const tableBody = document.getElementById("table-body");
 
 //input value 
 const inputLog = document.getElementsByClassName("input-log");
 const inputLogs = document.getElementsByClassName("input-logs");
+
+//table value
+const gameTable1 = document.getElementById("game-table1");
+const gameTable2 = document.getElementById("game-table2");
+const gameTable3 = document.getElementById("game-table3");
 
 //mobile touch img transistion
 const activeScroll = (scroll) => {
@@ -50,27 +55,47 @@ activeScroll(activeCurrent);
 activeScroll(activeDone);
 
 //table toggle
-const toggleTable = (tableTog) => {
-    tableTog.forEach(toggle => {
+activeList.forEach(toggle => {
         toggle.addEventListener("click", () => {            
-            contentList.style.display = "none";
-            contList.style.display = "block";
+            contentList.classList.add("hidden");
+            contentList.classList.remove("flex");
+            contList.classList.remove("hidden");
+            rstBtn1.classList.remove("hidden");
         });
-        rstBtn1.addEventListener("click", () => {
-            contList.style.display = "none";
-            contentList.style.display = "flex"; 
-        })
+});
+activeCurrent.forEach(toggle => {
+    toggle.addEventListener("click", () => {            
+        contentList.classList.add("hidden");
+        contentList.classList.remove("flex");
+        contCurrentPlaying.classList.remove("hidden");
+        rstBtn1.classList.remove("hidden");
     });
-}
-toggleTable(activeList);
-toggleTable(activeCurrent);
-toggleTable(activeDone);
+});
+activeDone.forEach(toggle => {
+    toggle.addEventListener("click", () => {            
+        contentList.classList.add("hidden");
+        contentList.classList.remove("flex");
+        contDonePlaying.classList.remove("hidden");
+        rstBtn1.classList.remove("hidden");
+    });
+});
+rstBtn1.addEventListener("click", () => {
+            contList.classList.add("hidden");
+            contCurrentPlaying.classList.add("hidden");
+            contDonePlaying.classList.add("hidden");
+            contentList.classList.remove("hidden");
+            contentList.classList.add("flex");
+            rstBtn1.classList.add("hidden");
+});
+
 
 //game form toggle
 add.addEventListener("click", () => {
-    contentList.style.display = "none";
-    gameFormContainer.style.display = "flex";
-    add.style.display = "none";
+    contentList.classList.add("hidden");
+    contentList.classList.remove("flex");
+    gameFormContainer.classList.remove("hidden");
+    add.classList.add("hidden");
+    add.classList.remove("block");
 });
 
 //reset button
@@ -102,9 +127,11 @@ rstBtn.addEventListener("click", (e) => {
     }
 
     // Reset and go back
-    gameFormContainer.style.display = "none";
-    add.style.display = "block";
-    contentList.style.display = "flex";
+    gameFormContainer.classList.add("hidden");
+    add.classList.remove("hidden");
+    add.classList.add("block");
+    contentList.classList.remove("hidden");
+    contentList.classList.add("flex");
 
     for (let i = 0; i < inputLog.length; i++) {
         inputLog[i].value = "";
@@ -166,6 +193,16 @@ gameForm.addEventListener("submit", (e) => {
     newRow.appendChild(actionsAdd);
     newRow.appendChild(deleteTable);
     newRow.appendChild(editTable);
+
+    //assigning table row data in their respective tables
+    let targetTable;
+    if(status === "Wants to play"){
+        targetTable = gameTable1;
+    } else if(status === "Playing"){
+        targetTable = gameTable2;
+    } else if(status === "Done"){
+        targetTable = gameTable3;
+    }
     //adding new row
     tableBody.appendChild(newRow);
 
@@ -252,6 +289,5 @@ gameForm.addEventListener("submit", (e) => {
 
     gameForm.reset();
     alert("Game Added Successfully");
-});
-    
+});   
 });
