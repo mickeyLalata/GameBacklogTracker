@@ -149,20 +149,109 @@ gameForm.addEventListener("submit", (e) => {
     const deleteTable = document.createElement("td");
     deleteTable.appendChild(deleteBtn);
 
+    //edit button
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.classList.add("edit-btn");
+
+    //editing tr or data
+    const editTable = document.createElement("td");
+    editTable.appendChild(editBtn);
+
+    //adding td
     newRow.appendChild(titleAdd);
     newRow.appendChild(platformAdd);
     newRow.appendChild(statusAdd);
     newRow.appendChild(genreAdd);
     newRow.appendChild(actionsAdd);
     newRow.appendChild(deleteTable);
-
+    newRow.appendChild(editTable);
+    //adding new row
     tableBody.appendChild(newRow);
 
     deleteBtn.addEventListener("click", () => {
-       newRow.remove(); 
+
+        const confirmDelete = confirm("Are you sure you want to delete this data?")
+
+        if(confirmDelete){
+            newRow.remove(); 
+        }
     });
+
+    let titleInput, platformInput, statusSelect, genreInput, actionsInput;
+
+     // Editing the data when edit button is clicked
+     editBtn.addEventListener("click", () => {
+        
+        if(editBtn.textContent === "Edit"){
+            // Replace the title cell with an input field
+            titleInput = document.createElement("input");
+            titleInput.type = "text";
+            titleInput.value = titleAdd.textContent;
+
+            // Replace the platform cell with an input field
+            platformInput = document.createElement("input");
+            platformInput.type = "text";
+            platformInput.value = platformAdd.textContent;
+
+            // Replace the status cell with a select field
+            statusSelect = document.createElement("select");
+            const options = ["Wants to play", "Playing", "Done"];
+            options.forEach(option => {
+                const optionElem = document.createElement("option");
+                optionElem.value = option;
+                optionElem.textContent = option;
+                if (statusAdd.textContent === option) {
+                    optionElem.selected = true;
+                }
+                statusSelect.appendChild(optionElem);
+            });
+
+            // Replace the genre cell with an input field
+            genreInput = document.createElement("input");
+            genreInput.type = "text";
+            genreInput.value = genreAdd.textContent;
+
+            // Replace the actions cell with an input field
+            actionsInput = document.createElement("input");
+            actionsInput.type = "text";
+            actionsInput.value = actionsAdd.textContent;
+
+            // Clear the current cell content and append the input fields
+            titleAdd.innerHTML = "";
+            platformAdd.innerHTML = "";
+            statusAdd.innerHTML = "";
+            genreAdd.innerHTML = "";
+            actionsAdd.innerHTML = "";
+
+            titleAdd.appendChild(titleInput);
+            platformAdd.appendChild(platformInput);
+            statusAdd.appendChild(statusSelect);
+            genreAdd.appendChild(genreInput);
+            actionsAdd.appendChild(actionsInput);
+
+            // Change the button text to "Save"
+            editBtn.textContent = "Save";
+            editBtn.classList.add("save-btn");
+            editBtn.classList.remove("edit-btn");
+        }else{
+            // When the Save button is clicked, save the new values
+                titleAdd.textContent = titleInput.value;
+                platformAdd.textContent = platformInput.value;
+                statusAdd.textContent = statusSelect.value;
+                genreAdd.textContent = genreInput.value;
+                actionsAdd.textContent = actionsInput.value;
+
+                // Change the button back to "Edit"
+                editBtn.textContent = "Edit";
+                editBtn.classList.add("edit-btn");
+                editBtn.classList.remove("save-btn");
+        }
+    });
+
 
     gameForm.reset();
     alert("Game Added Successfully");
 });
+    
 });
