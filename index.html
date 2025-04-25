@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>Game Backlog Tracker</header>
-    <div id="container">
+    <div id="container" class="flex">
         <div id="list">
             <div class="list-view"></div>
         </div>
@@ -19,7 +19,7 @@
             <div class="done-view"></div>
         </div>
     </div>
-    <div id="game-form-container">
+    <div id="game-form-container" class="hidden">
       <form id="game-form">
         <input class="input-log" type="text" id="title" placeholder="Game Title" required>
         <input class="input-log" type="text" id="platform" placeholder="Platform" required>
@@ -35,7 +35,7 @@
       </form>
       <button type="button" id="reset">Back</button>
     </div>
-    <div id="game-list">
+    <div id="game-list" class="hidden">
       <div id="table-container">
           <table id="game-table1">
             <thead>
@@ -54,9 +54,8 @@
             </tbody>
           </table>
         </div>
-      <button type="button" id="reset1">Back</button>
     </div>
-    <div id="current-playing">
+    <div id="current-playing" class="hidden">
       <div id="table-container">
         <table id="game-table2">
           <thead>
@@ -73,9 +72,8 @@
           </tbody>
         </table>
       </div>
-      <button type="button" id="reset1">Back</button>
     </div>
-    <div id="done-playing">
+    <div id="done-playing" class="hidden">
       <div id="table-container">
         <table id="game-table3">
           <thead>
@@ -91,10 +89,10 @@
               <!-- Data will be added dynamically via JS -->
           </tbody>
         </table>
-      </div>
-      <button type="button" id="reset1">Back</button>
+      </div>    
     </div>
-    <div id="add-button">
+    <button type="button" id="reset1" class="hidden">Back</button>
+    <div id="add-button" class="block">
       <button id="add">Add Game</button>
     </div>
 <script src="main.js"></script>
