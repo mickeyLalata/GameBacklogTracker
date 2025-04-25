@@ -29,9 +29,9 @@ const inputLog = document.getElementsByClassName("input-log");
 const inputLogs = document.getElementsByClassName("input-logs");
 
 //table value
-const gameTable1 = document.getElementById("game-table1");
-const gameTable2 = document.getElementById("game-table2");
-const gameTable3 = document.getElementById("game-table3");
+const gameTable1 = document.getElementById("game-table1").querySelector("tbody");
+const gameTable2 = document.getElementById("game-table2").querySelector("tbody");
+const gameTable3 = document.getElementById("game-table3").querySelector("tbody");
 
 //mobile touch img transistion
 const activeScroll = (scroll) => {
@@ -203,8 +203,10 @@ gameForm.addEventListener("submit", (e) => {
     } else if(status === "Done"){
         targetTable = gameTable3;
     }
-    //adding new row
-    tableBody.appendChild(newRow);
+
+    if(targetTable){
+        targetTable.appendChild(newRow);
+    }
 
     deleteBtn.addEventListener("click", () => {
 
@@ -283,9 +285,27 @@ gameForm.addEventListener("submit", (e) => {
                 editBtn.textContent = "Edit";
                 editBtn.classList.add("edit-btn");
                 editBtn.classList.remove("save-btn");
+
+                // Remove the row from the current table
+                const currentTable = newRow.closest("tbody");
+                currentTable.removeChild(newRow);
+
+                // Reassign the row to the correct table based on the new status
+                let newTargetTable;
+                if (statusSelect.value === "Wants to play") {
+                    newTargetTable = gameTable1;
+                } else if (statusSelect.value === "Playing") {
+                    newTargetTable = gameTable2;
+                } else if (statusSelect.value === "Done") {
+                    newTargetTable = gameTable3;
+                }
+
+                // Append the row to the new table
+                if (newTargetTable) {
+                    newTargetTable.appendChild(newRow);
+                }
         }
     });
-
 
     gameForm.reset();
     alert("Game Added Successfully");
