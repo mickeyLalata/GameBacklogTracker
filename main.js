@@ -96,6 +96,10 @@ add.addEventListener("click", () => {
     gameFormContainer.classList.remove("hidden");
     add.classList.add("hidden");
     add.classList.remove("block");
+    contList.classList.add("hidden");
+    contCurrentPlaying.classList.add("hidden");
+    contDonePlaying.classList.add("hidden");
+    rstBtn1.classList.add("hidden");
 });
 
 //reset button
