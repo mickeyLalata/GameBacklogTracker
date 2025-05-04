@@ -252,7 +252,7 @@ gameForm.addEventListener("submit", (e) => {
             genreInput.value = genreAdd.textContent;
 
             // Replace the actions cell with an input field
-            actionsInput = document.createElement("input");
+            actionsInput = document.createElement("textarea");
             actionsInput.type = "text";
             actionsInput.value = actionsAdd.textContent;
 
@@ -294,10 +294,13 @@ gameForm.addEventListener("submit", (e) => {
                 let newTargetTable;
                 if (statusSelect.value === "Wants to play") {
                     newTargetTable = gameTable1;
+                    alert("data moved to wants to play");
                 } else if (statusSelect.value === "Playing") {
                     newTargetTable = gameTable2;
+                    alert("data moved to playing");
                 } else if (statusSelect.value === "Done") {
                     newTargetTable = gameTable3;
+                    alert("data moved to done");
                 }
 
                 // Append the row to the new table
