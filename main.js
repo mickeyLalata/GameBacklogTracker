@@ -21,7 +21,7 @@ const rstBtn1 = document.getElementById("reset1");
 //add game form
 const gameForm = document.getElementById("game-form");
 const gameFormContainer = document.getElementById("game-form-container");
-const add = document.getElementById("add-button"); // add game button
+const add = document.getElementById("add"); // add game button
 const tableBody = document.getElementById("table-body");
 
 //input value 
