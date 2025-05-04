@@ -50,13 +50,24 @@ textarea{
     padding: 20px;
     border: 2px solid yellow;
 }
-#container{
-    gap: 1rem;
+#add-button{
     margin: 30px 0;
     height: 60vh;
     box-sizing: border-box;
+    margin-right: 32px;
     margin-left: 20px;
+}
+#add{
+    width: 100%;
+    padding: 20px;
+    margin: 20px 0;
     margin-right: 20px;
+}
+#container{
+    gap: 1rem;
+    margin: 30px 20px;
+    height: 60vh;
+    box-sizing: border-box;
 }
 @media (max-width: 768px) {
     body{
@@ -77,6 +88,10 @@ textarea{
     .list-view, .play-view, .done-view{
     justify-content: center;
     align-items: center;
+    }
+    textarea{
+        width: 100%;
+        overflow: hidden;
     }
   }
 #list, #playing, #done{
