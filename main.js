@@ -152,7 +152,19 @@ gameForm.addEventListener("submit", (e) => {
     e.preventDefault(); //prevents page reload
 
     //table data
-    const title = document.getElementById("title").value;
+    const title = document.getElementById("title").value.trim();
+    // Check for duplicate title across all tables
+    const allTables = [gameTable1, gameTable2, gameTable3];
+    for (let table of allTables) {
+        const rows = table.getElementsByTagName("tr");
+        for (let row of rows) {
+            const existingTitle = row.cells[0].textContent.trim();
+            if (existingTitle.toLowerCase() === title.toLowerCase()) {
+                alert("A game with this title already exists!");
+                return; // Stop form submission
+            }
+        }
+    }
     const platform = document.getElementById("platform").value;
     const status = document.getElementById("status").value;
     const genre = document.getElementById("genre").value;
@@ -278,7 +290,23 @@ gameForm.addEventListener("submit", (e) => {
             editBtn.classList.add("save-btn");
             editBtn.classList.remove("edit-btn");
         }else{
-            // When the Save button is clicked, save the new values
+                const newTitle = titleInput.value.trim()
+            // Check for duplicate title across all tables (excluding the current row)
+            const allTables = [gameTable1, gameTable2, gameTable3];
+            for (let table of allTables) {
+                const rows = table.getElementsByTagName("tr");
+                for (let row of rows) {
+                    const existingTitle = row.cells[0].textContent.trim();
+                    if (
+                        existingTitle.toLowerCase() === newTitle.toLowerCase() &&
+                        row !== newRow // make sure it's not the same row being edited
+                        ) {
+                        alert("A game with this title already exists!");
+                        return; // Stop saving changes
+                    }
+                }
+            }
+                // When the Save button is clicked, save the new values
                 titleAdd.textContent = titleInput.value;
                 platformAdd.textContent = platformInput.value;
                 statusAdd.textContent = statusSelect.value;
