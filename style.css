@@ -32,6 +32,26 @@ input{
     display: block;
     margin: 10px 0; 
 }
+#labels{
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 10px 20px;
+    padding: 10px;
+    border-color: yellow;
+    margin-left: 40px;
+}
+legend{
+    color: yellow;
+}
+label{
+    color: white;
+}
+.platform-edit-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(5, auto); /* 5 columns */
+    gap: 8px; /* spacing between checkboxes */
+    margin-top: 5px;
+  }
 select{
     background-color: #010101;
     border: 2px solid yellow;
