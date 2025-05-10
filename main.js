@@ -105,7 +105,8 @@ add.addEventListener("click", () => {
 //reset button
 rstBtn.addEventListener("click", (e) => {
     e.preventDefault(); // stop form submission
-
+    
+    const clearCheckbox = document.querySelectorAll(".clear-logs");
     let hasValue = false;
 
     // Check if inputs have values
@@ -119,6 +120,14 @@ rstBtn.addEventListener("click", (e) => {
     // Check if selects have values
     for (let i = 0; i < inputLogs.length; i++) {
         if (inputLogs[i].value !== "") {
+            hasValue = true;
+            break;
+        }
+    }
+
+    // Check if checkbox have values
+    for (let i = 0; i < clearCheckbox.length; i++) {
+        if (clearCheckbox[i].checked) {
             hasValue = true;
             break;
         }
@@ -144,6 +153,10 @@ rstBtn.addEventListener("click", (e) => {
     for (let i = 0; i < inputLogs.length; i++) {
         inputLogs[i].selectedIndex = 0;
     }
+
+    clearCheckbox.forEach(checkbox => {
+        checkbox.checked = false;
+    });
 });
 
 
