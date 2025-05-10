@@ -165,7 +165,12 @@ gameForm.addEventListener("submit", (e) => {
             }
         }
     }
-    const platform = document.getElementById("platform").value;
+    const checkedPlatform = Array.from(document.querySelectorAll('input[name="platforms"]:checked')).map(cb => cb.value);
+    if(checkedPlatform.length === 0){
+        e.preventDefault();
+        alert("please enter at least one platform.");
+        return; //stop form submission
+    }
     const status = document.getElementById("status").value;
     const genre = document.getElementById("genre").value;
     const actions = document.getElementById("actions").value;
@@ -175,7 +180,7 @@ gameForm.addEventListener("submit", (e) => {
     const titleAdd = document.createElement("td");
     titleAdd.textContent = title;
     const platformAdd = document.createElement("td");
-    platformAdd.textContent = platform;
+    platformAdd.textContent = checkedPlatform.join(" / ");
     const statusAdd = document.createElement("td");
     statusAdd.textContent = status;
     const genreAdd = document.createElement("td");
@@ -244,10 +249,30 @@ gameForm.addEventListener("submit", (e) => {
             titleInput.type = "text";
             titleInput.value = titleAdd.textContent;
 
-            // Replace the platform cell with an input field
-            platformInput = document.createElement("input");
-            platformInput.type = "text";
-            platformInput.value = platformAdd.textContent;
+            const availablePlatforms = ["PS1", "PS2", "PS3", "PS4", "PS5", "PSP", "XBOX", "Windows", "Android", "IOS", "3ds", "Nds", "Nintendo Switch"]
+
+            platformInput = document.createElement("div");
+            platformInput.classList.add("platform-edit-checkboxes"); // Optional styling hook
+
+            // Convert current platforms back to array
+            const currentPlatforms = platformAdd.textContent.split(" / ").map(p => p.trim());
+
+            // Create checkboxes
+            availablePlatforms.forEach(platform => {
+                const label = document.createElement("label");
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "platform-edit";
+                checkbox.value = platform;
+
+                if (currentPlatforms.includes(platform)) {
+                    checkbox.checked = true;
+                }
+
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(platform));
+                platformInput.appendChild(label);
+            });
 
             // Replace the status cell with a select field
             statusSelect = document.createElement("select");
@@ -308,7 +333,14 @@ gameForm.addEventListener("submit", (e) => {
             }
                 // When the Save button is clicked, save the new values
                 titleAdd.textContent = titleInput.value;
-                platformAdd.textContent = platformInput.value;
+                const selectedPlatforms = Array.from(platformInput.querySelectorAll('input[name="platform-edit"]:checked')).map(cb => cb.value);
+
+                if (selectedPlatforms.length === 0) {
+                alert("Please select at least one platform.");
+                return; // prevent saving
+                }
+
+                platformAdd.textContent = selectedPlatforms.join(" / ");
                 statusAdd.textContent = statusSelect.value;
                 genreAdd.textContent = genreInput.value;
                 actionsAdd.textContent = actionsInput.value;
