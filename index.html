@@ -22,7 +22,24 @@
     <div id="game-form-container" class="hidden">
       <form id="game-form">
         <input class="input-log" type="text" id="title" placeholder="Game Title" required>
-        <input class="input-log" type="text" id="platform" placeholder="Platform" required>
+        <div id="labels">
+          <fieldset id="labels">
+          <legend>Select Platform</legend>
+            <label><input type="checkbox" name="platforms" value="PS1">PS1</label>
+            <label><input type="checkbox" name="platforms" value="PS2">PS2</label>
+            <label><input type="checkbox" name="platforms" value="PS3">PS3</label>
+            <label><input type="checkbox" name="platforms" value="PS4">PS4</label>
+            <label><input type="checkbox" name="platforms" value="PS5">PS5</label>
+            <label><input type="checkbox" name="platforms" value="PSP">PSP</label>
+            <label><input type="checkbox" name="platforms" value="XBOX">XBOX</label>
+            <label><input type="checkbox" name="platforms" value="Windows">Windows</label>
+            <label><input type="checkbox" name="platforms" value="Android">Android</label>
+            <label><input type="checkbox" name="platforms" value="IOS">IOS</label>
+            <label><input type="checkbox" name="platforms" value="3ds">3ds</label>
+            <label><input type="checkbox" name="platforms" value="Nds">Nds</label>
+            <label><input type="checkbox" name="platforms" value="Nintendo Switch">Nintendo Switch</label>
+        </fieldset>
+        </div>
         <select class="input-logs" id="status" required>
             <option value="" disabled selected hidden>Select</option>
             <option value="Wants to play">Wants to play</option>
