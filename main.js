@@ -369,13 +369,13 @@ function addGameToTable(title, checkedPlatform, status, genre, actions) {
                 let newTargetTable;
                 if (statusSelect.value === "Wants to play") {
                     newTargetTable = gameTable1;
-                    alert("data moved to wants to play");
+                    alert("Data Updated Successfully");
                 } else if (statusSelect.value === "Playing") {
                     newTargetTable = gameTable2;
-                    alert("data moved to playing");
+                    alert("Data Updated Successfully");
                 } else if (statusSelect.value === "Done") {
                     newTargetTable = gameTable3;
-                    alert("data moved to done");
+                    alert("Data Updated Successfully");
                 }
 
                 // Append the row to the new table
