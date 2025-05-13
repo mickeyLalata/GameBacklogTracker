@@ -1,5 +1,3 @@
-//wait for the DOM to load
-document.addEventListener("DOMContentLoaded", () => {
 //main page 
 const contentList = document.getElementById("container");
 const gameList = document.getElementById("list");
@@ -32,6 +30,16 @@ const inputLogs = document.getElementsByClassName("input-logs");
 const gameTable1 = document.getElementById("game-table1").querySelector("tbody");
 const gameTable2 = document.getElementById("game-table2").querySelector("tbody");
 const gameTable3 = document.getElementById("game-table3").querySelector("tbody");
+
+// Retrieve data from localStorage
+let gameData = JSON.parse(localStorage.getItem("gameData")) || [];
+
+// Render the table from localStorage on page load
+function renderFromLocalStorage() {
+    gameData.forEach(({ title, checkedPlatform, status, genre, actions }) => {
+        addGameToTable(title, checkedPlatform, status, genre, actions);
+    });
+}
 
 //mobile touch img transistion
 const activeScroll = (scroll) => {
@@ -159,41 +167,15 @@ rstBtn.addEventListener("click", (e) => {
     });
 });
 
-
-//adding game data in the table
-gameForm.addEventListener("submit", (e) => {
-    e.preventDefault(); //prevents page reload
-
-    //table data
-    const title = document.getElementById("title").value.trim();
-    // Check for duplicate title across all tables
-    const allTables = [gameTable1, gameTable2, gameTable3];
-    for (let table of allTables) {
-        const rows = table.getElementsByTagName("tr");
-        for (let row of rows) {
-            const existingTitle = row.cells[0].textContent.trim();
-            if (existingTitle.toLowerCase() === title.toLowerCase()) {
-                alert("A game with this title already exists!");
-                return; // Stop form submission
-            }
-        }
-    }
-    const checkedPlatform = Array.from(document.querySelectorAll('input[name="platforms"]:checked')).map(cb => cb.value);
-    if(checkedPlatform.length === 0){
-        e.preventDefault();
-        alert("please enter at least one platform.");
-        return; //stop form submission
-    }
-    const status = document.getElementById("status").value;
-    const genre = document.getElementById("genre").value;
-    const actions = document.getElementById("actions").value;
-
-    //adding table data
+// Add a game to the table
+function addGameToTable(title, checkedPlatform, status, genre, actions) {
     const newRow = document.createElement("tr");
+    
+    //adding table data
     const titleAdd = document.createElement("td");
     titleAdd.textContent = title;
     const platformAdd = document.createElement("td");
-    platformAdd.textContent = checkedPlatform.join(" / ");
+    platformAdd.textContent = Array.isArray(checkedPlatform) ? checkedPlatform.join(" / ") : checkedPlatform;
     const statusAdd = document.createElement("td");
     statusAdd.textContent = status;
     const genreAdd = document.createElement("td");
@@ -247,7 +229,12 @@ gameForm.addEventListener("submit", (e) => {
         const confirmDelete = confirm("Are you sure you want to delete this data?")
 
         if(confirmDelete){
-            newRow.remove(); 
+            const index = gameData.findIndex(game => game.title === title);
+            if (index !== -1){
+                gameData.splice(index, 1);
+                localStorage.setItem("gameData", JSON.stringify(gameData)); // Delete in local storage
+            } 
+            newRow.remove();
         }
     });
 
@@ -262,8 +249,7 @@ gameForm.addEventListener("submit", (e) => {
             titleInput.type = "text";
             titleInput.value = titleAdd.textContent;
 
-            const availablePlatforms = ["PS1", "PS2", "PS3", "PS4", "PS5", "PSP", "XBOX", "Windows", "Android", "IOS", "3ds", "Nds", "Nintendo Switch"]
-
+            const availablePlatforms = ["PS1", "PS2", "PS3", "PS4", "PS5", "PSP", "XBOX", "Windows", "Android", "IOS", "3ds", "Nds", "Nintendo Switch"];
             platformInput = document.createElement("div");
             platformInput.classList.add("platform-edit-checkboxes"); // Optional styling hook
 
@@ -328,7 +314,7 @@ gameForm.addEventListener("submit", (e) => {
             editBtn.classList.add("save-btn");
             editBtn.classList.remove("edit-btn");
         }else{
-                const newTitle = titleInput.value.trim()
+            const newTitle = titleInput.value.trim();
             // Check for duplicate title across all tables (excluding the current row)
             const allTables = [gameTable1, gameTable2, gameTable3];
             for (let table of allTables) {
@@ -344,15 +330,27 @@ gameForm.addEventListener("submit", (e) => {
                     }
                 }
             }
-                // When the Save button is clicked, save the new values
-                titleAdd.textContent = titleInput.value;
-                const selectedPlatforms = Array.from(platformInput.querySelectorAll('input[name="platform-edit"]:checked')).map(cb => cb.value);
-
+            const selectedPlatforms = Array.from(platformInput.querySelectorAll('input[name="platform-edit"]:checked')).map(cb => cb.value);
                 if (selectedPlatforms.length === 0) {
                 alert("Please select at least one platform.");
                 return; // prevent saving
                 }
 
+                // Update the object in gameData
+              const gameIndex = gameData.findIndex(game => game.title === title);
+                if (gameIndex !== -1) {
+                    gameData[gameIndex] = {
+                    title: titleInput.value.trim(),
+                    checkedPlatform: selectedPlatforms,
+                    status: statusSelect.value,
+                    genre: genreInput.value.trim(),
+                    actions: actionsInput.value.trim()
+                    };
+                    localStorage.setItem("gameData", JSON.stringify(gameData));
+                }
+
+                // When the Save button is clicked, save the new values
+                titleAdd.textContent = titleInput.value;
                 platformAdd.textContent = selectedPlatforms.join(" / ");
                 statusAdd.textContent = statusSelect.value;
                 genreAdd.textContent = genreInput.value;
@@ -386,8 +384,50 @@ gameForm.addEventListener("submit", (e) => {
                 }
         }
     });
+};
 
-    gameForm.reset();
+//adding game data in the table
+gameForm.addEventListener("submit", (e) => {
+    e.preventDefault(); //prevents page reload
+
+    //table data
+    const title = document.getElementById("title").value.trim();
+    const status = document.getElementById("status").value;
+    const genre = document.getElementById("genre").value.trim();
+    const actions = document.getElementById("actions").value.trim();
+    const checkedPlatform = Array.from(document.querySelectorAll('input[name="platforms"]:checked')).map(cb => cb.value);
+
+    if(!title){
+        alert("title is required.");
+        return;
+    }
+    if(checkedPlatform.length === 0){
+        alert("please enter at least one platform.");
+        return; //stop form submission
+    }
+
+    // Check for duplicate title across all tables
+    const allTables = [gameTable1, gameTable2, gameTable3];
+    for (let table of allTables) {
+        const rows = table.getElementsByTagName("tr");
+        for (let row of rows) {
+            const existingTitle = row.cells[0]?.textContent?.trim();
+            if (existingTitle?.toLowerCase() === title.toLowerCase()) {
+                alert("A game with this title already exists!");
+                return; // Stop form submission
+            }
+        }
+    }
+
+   
+    const newGame = { title, checkedPlatform, status, genre, actions };
+    gameData.push(newGame);
+    localStorage.setItem("gameData", JSON.stringify(gameData));
+    addGameToTable(title, checkedPlatform, status, genre, actions);
+
+    gameForm.reset(); // Reset form after submission
     alert("Game Added Successfully");
-});   
 });
+
+// Initialize by rendering games from localStorage
+document.addEventListener("DOMContentLoaded", renderFromLocalStorage);
